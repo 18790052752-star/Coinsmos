@@ -468,343 +468,282 @@ const CHARITY = [
   {id:'c1',  icon:'🍞', name:'给流浪汉买顿饭', desc:'让他今晚不饿肚子',        price:50},
   {id:'c2',  icon:'📚', name:'捐助山区小学',   desc:'几本课本，一点希望',      price:800},
   {id:'c3',  icon:'🧸', name:'资助孤儿院',     desc:'孩子们的冬天会暖一些',    price:8000},
-  {id:'c4',  icon:'🏥', name:'免费医疗站',     desc:'为穷人提供基础医疗',      price:80000},
-  {id:'c5',  icon:'🌳', name:'植树造林',       desc:'种下一片森林',            price:800000},
+  {id:'c4',  icon:'🏥', name:'免费医疗站',     desc:'为小镇建一间诊所',        price:80000},
+  {id:'c5',  icon:'🏗️', name:'灾区重建',       desc:'帮一个村庄重新站起来',    price:1e6},
+  {id:'c6',  icon:'🏫', name:'建希望小学',     desc:'一所学校，改变一代人',    price:2e7},
+  {id:'c7',  icon:'💉', name:'全球疫苗计划',   desc:'让疾病不再肆虐',          price:5e8},
+  {id:'c8',  icon:'🌊', name:'海洋清理计划',   desc:'还大海一片蔚蓝',          price:1e10},
+  {id:'c9',  icon:'🛸', name:'火星移民基金',   desc:'为人类寻找第二个家',      price:5e11},
+  {id:'c10', icon:'🌌', name:'宇宙文明播种',   desc:'把生命撒向星辰大海',      price:5e14},
 ];
+
 const FUN = [
-  {id:'f1', icon:'🎮', name:'游戏厅', desc:'放松一下', price:100},
-  {id:'f2', icon:'🎬', name:'看电影', desc:'一场光影盛宴', price:1000},
-  {id:'f3', icon:'🎹', name:'音乐会', desc:'聆听顶级演奏', price:10000},
+  {id:'f1',  icon:'🎬', name:'看一场电影',   desc:'爆米花和巨幕',            price:80},
+  {id:'f2',  icon:'🎡', name:'游乐园一日',   desc:'过山车尖叫到嗓子哑',      price:400},
+  {id:'f3',  icon:'🍲', name:'火锅自由',     desc:'毛肚鸭肠不限量',          price:1500},
+  {id:'f4',  icon:'📱', name:'新品手机',     desc:'刚发布，立刻拥有',        price:9000},
+  {id:'f5',  icon:'🍷', name:'高端餐厅',     desc:'米其林三星，主厨亲自上菜',price:30000},
+  {id:'f6',  icon:'🪂', name:'蹦极',         desc:'从 200 米高空纵身一跃',   price:80000},
+  {id:'f7',  icon:'🎤', name:'演唱会 VIP',   desc:'第一排，和偶像击掌',      price:300000},
+  {id:'f8',  icon:'✈️', name:'环球旅行',     desc:'一年走遍七大洲',          price:2e6},
+  {id:'f9',  icon:'🛥️', name:'私人游艇',     desc:'地中海的日落属于你',      price:2e7},
+  {id:'f10', icon:'🏎️', name:'豪华跑车',     desc:'零百加速两秒八',          price:2e8},
+  {id:'f11', icon:'🛩️', name:'私人飞机',     desc:'天空才是你的停车场',      price:1e9},
+  {id:'f12', icon:'🏝️', name:'买座海岛',     desc:'自己的国家，自己的规则',  price:2e10},
+  {id:'f13', icon:'🚀', name:'太空旅行',     desc:'从舷窗看地球是圆的',      price:5e11},
+  {id:'f14', icon:'🛰️', name:'私人火箭发射', desc:'把你的名字送上轨道',      price:5e12},
+  {id:'f15', icon:'🏛️', name:'买下一座城市', desc:'从今天起，你是市长',      price:5e13},
+  {id:'f16', icon:'🛸', name:'建造太空站',   desc:'人类的第二个家',          price:1e15},
+  {id:'f17', icon:'💠', name:'收购一家银行', desc:'印钞机归你管',            price:5e16},
+  {id:'f18', icon:'🌕', name:'私人月球基地', desc:'广寒宫产权证书一张',      price:1e18},
+  {id:'f19', icon:'⏳', name:'时间旅行实验', desc:'回到过去，买下比特币',    price:1e20},
+  {id:'f20', icon:'🌌', name:'创造一个宇宙', desc:'从一枚硬币到星辰大海',    price:1e23},
 ];
+
 const ACHIEVEMENTS = [
-  {id:'a1', icon:'👆', name:'第一桶金', desc:'点击1次', check:()=>save.clicks>=1},
-  {id:'a2', icon:'🪙', name:'小有积蓄', desc:'拥有100元', check:()=>save.money>=100},
-  {id:'a3', icon:'🏪', name:'开店老板', desc:'购买第一个产业', check:()=>save.ownedShop.filter(x=>x>0).length>=1},
+  {id:'a1',  icon:'🪙', name:'第一桶金',   desc:'总资产达到 100',            check:()=>S.totalEarned>=100},
+  {id:'a2',  icon:'👆', name:'点击狂人',   desc:'累计点击 100 次',           check:()=>S.clicks>=100},
+  {id:'a3',  icon:'💥', name:'点击之神',   desc:'累计点击 1000 次',          check:()=>S.clicks>=1000},
+  {id:'a4',  icon:'🏪', name:'小有产业',   desc:'拥有 10 个产业',            check:()=>totalItemCount()>=10},
+  {id:'a5',  icon:'🏛️', name:'商业帝国',   desc:'拥有 100 个产业',           check:()=>totalItemCount()>=100},
+  {id:'a6',  icon:'💰', name:'富甲一方',   desc:'总资产达到 1,000,000',      check:()=>S.totalEarned>=1e6},
+  {id:'a7',  icon:'💎', name:'亿万身家',   desc:'总资产达到 1,000,000,000',  check:()=>S.totalEarned>=1e9},
+  {id:'a8',  icon:'❤️', name:'大慈善家',   desc:'慈善贡献达到 1,000,000',    check:()=>S.charity>=1e6},
+  {id:'a9',  icon:'📈', name:'股神',       desc:'投资盈利 10 次',            check:()=>S.investWins>=10},
+  {id:'a10', icon:'🎢', name:'败家子',     desc:'娱乐消费达到 1,000,000',    check:()=>S.entertainmentSpent>=1e6},
+  {id:'a11', icon:'👑', name:'宇宙之神',   desc:'达到最高等级',              check:()=>levelInfo().idx>=9},
+  {id:'a12', icon:'🌠', name:'星辰大海',   desc:'总资产达到 1,000 万亿',     check:()=>S.totalEarned>=1e15},
 ];
 
-// 存档
-let save = JSON.parse(localStorage.getItem('richSim')) || {
-  money:1, totalEarned:0, clicks:0,
-  income:0,
-  ownedShop:SHOP.map(()=>0),
-  ownedUpgrade:UPGRADES.map(()=>0),
-  ownedCharity:CHARITY.map(()=>false),
-  ownedFun:FUN.map(()=>false),
-  achDone:ACHIEVEMENTS.map(()=>false),
-  charityPoints:0,
-  levelIdx:0
+/* =========================================================
+   状态
+   ========================================================= */
+const S = {
+  money: 1,
+  totalEarned: 0,
+  clicks: 0,
+  charity: 0,
+  age: 18,
+  investWins: 0,
+  entertainmentSpent: 0,
+  entertainmentDone: new Set(),
+  charityDone: new Set(),
+  upgrades: {click:0, double:0, crit:0},
+  items: {},
+  achievements: new Set(),
+  investing: null,
+  history: [],
+  lastLevel: 0,
 };
-// DOM
-const $ = s=>document.querySelector(s);
-const $$ = s=>document.querySelectorAll(s);
-const moneyEl = $('#money');
-const incomeEl = $('#income');
-const totalEl = $('#total');
-const bigBtn = $('#bigBtn');
-const clickValueEl = $('#clickValue');
-const levelNameEl = $('#levelName');
-const levelPctEl = $('#levelPct');
-const levelFillEl = $('#levelFill');
-const levelHintEl = $('#levelHint');
-const sCharity = $('#sCharity');
-const sAge = $('#sAge');
-const sAssets = $('#sAssets');
-const sClicks = $('#sClicks');
-const upgradeList = $('#upgrade-list');
-const shopList = $('#shop-list');
-const itemsList = $('#items-list');
-const charityList = $('#charity-list');
-const funList = $('#fun-list');
-const achvList = $('#achv-list');
-const investInput = $('#investInput');
-const investBtn = $('#investBtn');
-const investStatus = $('#investStatus');
-const investHistory = $('#investHistory');
 
-// 标签切换
-$$('.tab').forEach(tab=>{
-  tab.onclick = ()=>{
-    $$('.tab').forEach(x=>x.classList.remove('active'));
-    $$('.panel').forEach(x=>x.classList.remove('active'));
-    tab.classList.add('active');
-    $('#panel-' + tab.dataset.tab).classList.add('active');
-  }
-})
+/* =========================================================
+   工具
+   ========================================================= */
+const $ = s => document.querySelector(s);
 
-// 数字格式化
 function fmt(n){
-  if(n >= 1e12) return (n/1e12).toFixed(2)+'T';
-  if(n >= 1e9) return (n/1e9).toFixed(2)+'B';
-  if(n >= 1e6) return (n/1e6).toFixed(2)+'M';
-  if(n >= 1e3) return (n/1e3).toFixed(2)+'K';
-  return n.toFixed(2);
+  if(!isFinite(n)) return '∞';
+  if(n < 0) return '-' + fmt(-n);
+  if(n < 1) return n.toFixed(2);
+  if(n < 1000) return n.toFixed(n < 10 ? 2 : (n < 100 ? 1 : 0));
+  if(n < 1e4) return Math.floor(n).toLocaleString('en-US');
+  if(n < 1e8) return (n/1e4).toFixed(2) + '万';
+  if(n < 1e12) return (n/1e8).toFixed(2) + '亿';
+  if(n < 1e16) return (n/1e12).toFixed(2) + '万亿';
+  if(n < 1e20) return (n/1e16).toFixed(2) + '京';
+  return n.toExponential(2);
 }
 
-// 计算点击收益
-function getClickGain(){
-  let base = 1;
-  for(let i=0;i<UPGRADES.length;i++){
-    const u = UPGRADES[i];
-    if(u.id === 'click') base += save.ownedUpgrade[i] *5;
+function calcIncome(){
+  let s = 0;
+  for(const it of SHOP) s += (S.items[it.id] || 0) * it.income;
+  return s;
+}
+
+function totalItemCount(){
+  let n = 0;
+  for(const k in S.items) n += S.items[k];
+  return n;
+}
+
+function fixedAssets(){
+  let s = 0;
+  for(const it of SHOP) s += (S.items[it.id] || 0) * it.price;
+  return s;
+}
+
+function calcClick(){
+  const base = 1 + S.upgrades.click * 5 + calcIncome() * 0.3;
+  const mult = 1 + S.charityDone.size * 0.15 + S.entertainmentDone.size * 0.02;
+  return base * mult;
+}
+
+function shopPrice(item){
+  const n = S.items[item.id] || 0;
+  return Math.ceil(item.price * Math.pow(1.15, n));
+}
+
+function upgradePrice(u){
+  return Math.ceil(u.base * Math.pow(u.growth, S.upgrades[u.id]));
+}
+
+function levelInfo(){
+  const te = S.totalEarned;
+  let idx = 0;
+  for(let i = LEVELS.length - 1; i >= 0; i--){
+    if(te >= LEVELS[i].need){ idx = i; break; }
   }
-  base *= 1 + save.charityPoints * 0.15;
-  let doubleChance = 0;
-  const doubleLv = save.ownedUpgrade.find((v,i)=>UPGRADES[i].id==='double');
-  if(doubleLv) doubleChance = doubleLv * 0.1;
-  let critChance = 0;
-  const critLv = save.ownedUpgrade.find((v,i)=>UPGRADES[i].id==='crit');
-  if(critLv) critChance = critLv *0.06;
-  return {base, doubleChance, critChance};
-}
-
-// 点击主按钮
-bigBtn.onclick = (e)=>{
-  const gain = getClickGain();
-  let val = gain.base;
-  let type = '';
-  const r = Math.random();
-  if(r < gain.critChance){
-    val *=5; type='crit';
-  }else if(r < gain.critChance + gain.doubleChance){
-    val *=2; type='double';
+  const cur = LEVELS[idx], next = LEVELS[idx + 1];
+  let prog = 100;
+  if(next){
+    prog = ((te - cur.need) / (next.need - cur.need)) * 100;
   }
-  save.money += val;
-  save.totalEarned += val;
-  save.clicks +=1;
-  showFloat(e.clientX,e.clientY,val,type);
-  update();
-}
-function showFloat(x,y,num,type){
-  const div = document.createElement('div');
-  div.className = 'float-text ' + type;
-  div.innerText = '+' + fmt(num);
-  div.style.left = x+'px';
-  div.style.top = y+'px';
-  document.body.appendChild(div);
-  setTimeout(()=>div.remove(),1000);
+  return {idx, cur, next, prog: Math.max(0, Math.min(100, prog))};
 }
 
-// 渲染升级列表
-function renderUpgrades(){
-  upgradeList.innerHTML = '';
-  UPGRADES.forEach((u,idx)=>{
-    const lv = save.ownedUpgrade[idx];
-    const price = u.base * Math.pow(u.growth, lv);
-    const canBuy = save.money >= price && lv < u.maxLv;
-    const card = document.createElement('div');
-    card.className = 'card ' + (canBuy?'':'disabled');
-    card.innerHTML = `
+/* =========================================================
+   特效
+   ========================================================= */
+function spawnFloat(x, y, text, cls){
+  const el = document.createElement('div');
+  el.className = 'float-text' + (cls ? ' ' + cls : '');
+  el.textContent = text;
+  el.style.left = x + 'px';
+  el.style.top = y + 'px';
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 1020);
+}
+
+function spawnParticles(x, y, count){
+  const colors = ['#ffd479', '#ff8ad8', '#c77dff', '#fff3c9'];
+  for(let i = 0; i < count; i++){
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const ang = Math.random() * Math.PI * 2;
+    const dist = 32 + Math.random() * 95;
+    p.style.setProperty('--tx', (Math.cos(ang) * dist).toFixed(1) + 'px');
+    p.style.setProperty('--ty', (Math.sin(ang) * dist).toFixed(1) + 'px');
+    p.style.left = x + 'px';
+    p.style.top = y + 'px';
+    const size = 4 + Math.random() * 7;
+    p.style.width = size + 'px';
+    p.style.height = size + 'px';
+    const c = colors[(Math.random() * colors.length) | 0];
+    p.style.background = c;
+    p.style.color = c;
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), 800);
+  }
+}
+
+function showToast(msg){
+  const t = document.createElement('div');
+  t.className = 'toast';
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 2500);
+}
+
+/* =========================================================
+   点击
+   ========================================================= */
+const bigBtn = $('#bigBtn');
+const moneyEl = $('#money');
+
+bigBtn.addEventListener('click', e => {
+  let x = e.clientX, y = e.clientY;
+  if(!x && !y){
+    const r = bigBtn.getBoundingClientRect();
+    x = r.left + r.width / 2;
+    y = r.top + r.height / 2;
+  }
+  doClick(x, y);
+});
+
+function doClick(x, y){
+  const base = calcClick();
+  let mult = 1;
+  const tags = [];
+
+  const dblChance = Math.min(0.8, S.upgrades.double * 0.1);
+  const critChance = Math.min(0.6, S.upgrades.crit * 0.06);
+
+  if(Math.random() < dblChance){ mult *= 2; tags.push('双击'); }
+  if(Math.random() < critChance){ mult *= 5; tags.push('暴击'); }
+
+  const gain = base * mult;
+  S.money += gain;
+  S.totalEarned += gain;
+  S.clicks++;
+
+  const isCrit = tags.includes('暴击');
+  const label = (tags.length ? tags.join('·') + ' ' : '') + '+' + fmt(gain);
+  spawnFloat(x, y, label, isCrit ? 'crit' : (tags.length ? 'double' : ''));
+  spawnParticles(x, y, isCrit ? 20 : (tags.length ? 13 : 7));
+
+  moneyEl.classList.add('pop');
+  setTimeout(() => moneyEl.classList.remove('pop'), 100);
+
+  updateUI();
+}
+
+/* =========================================================
+   构建：升级
+   ========================================================= */
+const upRefs = {};
+function buildUpgrades(){
+  const wrap = $('#upgrade-list');
+  wrap.innerHTML = '';
+  UPGRADES.forEach(u => {
+    const el = document.createElement('div');
+    el.className = 'card';
+    el.innerHTML = `
       <div class="card-icon">${u.icon}</div>
       <div class="card-body">
-        <div class="card-title">${u.name}<span class="lv">Lv.${lv}</span></div>
+        <div class="card-title">${u.name} <span class="lv">Lv.0</span></div>
         <div class="card-desc">${u.desc}</div>
-        <div class="card-foot">
-          <span class="price">${fmt(price)}</span>
-          <button class="buy-btn" ${canBuy?'':'disabled'}>购买</button>
-        </div>
-      </div>`;
-    card.querySelector('.buy-btn').onclick = ()=>{
-      save.money -= price;
-      save.ownedUpgrade[idx]++;
-      update();
-    }
-    upgradeList.appendChild(card);
-  })
+        <div class="card-foot"><span class="price">🪙 0</span></div>
+      </div>
+      <button class="buy-btn">升级</button>`;
+    const btn = el.querySelector('.buy-btn');
+    btn.addEventListener('click', () => buyUpgrade(u));
+    upRefs[u.id] = {el, btn, lv: el.querySelector('.lv'), price: el.querySelector('.price')};
+    wrap.appendChild(el);
+  });
 }
 
-// 商店产业
-function renderShop(){
-  shopList.innerHTML = '';
-  SHOP.forEach((item,idx)=>{
-    const cnt = save.ownedShop[idx];
-    const price = item.price * Math.pow(1.15, cnt);
-    const canBuy = save.money >= price;
-    const card = document.createElement('div');
-    card.className = 'card ' + (canBuy?'':'disabled');
-    card.innerHTML = `
-      <div class="card-icon">${item.icon}</div>
-      <div class="card-body">
-        <div class="card-title">${item.name}<span class="tag">+${item.income}/秒</span></div>
-        <div class="card-desc">${item.desc}</div>
-        <div class="card-foot">
-          <span class="price">${fmt(price)}</span>
-          <span class="owned">拥有:${cnt}</span>
-          <button class="buy-btn" ${canBuy?'':'disabled'}>购买</button>
-        </div>
-      </div>`;
-    card.querySelector('.buy-btn').onclick = ()=>{
-      save.money -= price;
-      save.ownedShop[idx]++;
-      update();
-    }
-    shopList.appendChild(card);
-  })
+function buyUpgrade(u){
+  const lv = S.upgrades[u.id];
+  if(lv >= u.maxLv) return;
+  const price = upgradePrice(u);
+  if(S.money < price) return;
+  S.money -= price;
+  S.upgrades[u.id]++;
+  updateUI();
 }
 
-// 我的产业
-function renderItems(){
-  itemsList.innerHTML = '';
-  let totalInc = 0;
-  SHOP.forEach((item,idx)=>{
-    const cnt = save.ownedShop[idx];
-    totalInc += cnt * item.income;
-    if(cnt <=0) return;
-    const div = document.createElement('div');
-    div.className='card bought';
-    div.innerHTML = `
-      <div class="card-icon">${item.icon}</div>
-      <div class="card-body">
-        <div class="card-title">${item.name}</div>
-        <div class="card-desc">数量:${cnt}，每秒产出 ${fmt(cnt * item.income)}</div>
-      </div>`;
-    itemsList.appendChild(div);
-  })
-  if(itemsList.children.length ===0) itemsList.innerHTML = `<div class="empty">还没有任何产业，去商店购买吧</div>`;
+function updateUpgrades(){
+  UPGRADES.forEach(u => {
+    const r = upRefs[u.id];
+    const lv = S.upgrades[u.id];
+    const price = upgradePrice(u);
+    const maxed = lv >= u.maxLv;
+    r.lv.textContent = 'Lv.' + lv + (maxed ? ' (满)' : '');
+    r.price.textContent = maxed ? '已达上限' : '🪙 ' + fmt(price);
+    const can = !maxed && S.money >= price;
+    r.btn.disabled = !can;
+    r.btn.textContent = maxed ? '满级' : '升级';
+    r.el.classList.toggle('disabled', !can);
+    r.el.classList.toggle('bought', maxed);
+  });
 }
 
-//慈善
-function renderCharity(){
-  charityList.innerHTML = '';
-  CHARITY.forEach((c,idx)=>{
-    const done = save.ownedCharity[idx];
-    const canBuy = !done && save.money >= c.price;
-    const card = document.createElement('div');
-    card.className = 'card ' + (done?'bought': canBuy ? '' : 'disabled');
-    card.innerHTML = `
-      <div class="card-icon">${c.icon}</div>
-      <div class="card-body">
-        <div class="card-title">${c.name}</div>
-        <div class="card-desc">${c.desc}</div>
-        <div class="card-foot">
-          <span class="price">${fmt(c.price)}</span>
-          <button class="buy-btn" ${done?'disabled':canBuy?'':'disabled'}>${done?'已完成':'捐赠'}</button>
-        </div>
-      </div>`;
-    if(!done){
-      card.querySelector('.buy-btn').onclick = ()=>{
-        save.money -= c.price;
-        save.ownedCharity[idx] = true;
-        save.charityPoints +=1;
-        update();
-      }
-    }
-    charityList.appendChild(card);
-  })
-}
-
-//娱乐
-function renderFun(){
-  funList.innerHTML = '';
-  FUN.forEach((f,idx)=>{
-    const done = save.ownedFun[idx];
-    const canBuy = !done && save.money >= f.price;
-    const card = document.createElement('div');
-    card.className = 'card ' + (done?'bought': canBuy ? '' : 'disabled');
-    card.innerHTML = `
-      <div class="card-icon">${f.icon}</div>
-      <div class="card-body">
-        <div class="card-title">${f.name}</div>
-        <div class="card-desc">${f.desc}</div>
-        <div class="card-foot">
-          <span class="price">${fmt(f.price)}</span>
-          <button class="buy-btn" ${done?'disabled':canBuy?'':'disabled'}>${done?'已体验':'体验'}</button>
-        </div>
-      </div>`;
-    if(!done){
-      card.querySelector('.buy-btn').onclick = ()=>{
-        save.money -= f.price;
-        save.ownedFun[idx] = true;
-        update();
-      }
-    }
-    funList.appendChild(card);
-  })
-}
-
-//成就
-function renderAchv(){
-  achvList.innerHTML = '';
-  ACHIEVEMENTS.forEach((a,idx)=>{
-    const unlock = save.achDone[idx] || a.check();
-    if(unlock) save.achDone[idx] = true;
-    const div = document.createElement('div');
-    div.className = 'ach ' + (unlock?'unlocked':'');
-    div.innerHTML = `
-      <div class="ach-icon">${a.icon}</div>
-      <div class="ach-name">${a.name}</div>
-      <div class="ach-desc">${a.desc}</div>`;
-    achvList.appendChild(div);
-  })
-}
-
-//投资
-let investTimer = null;
-$$('.quick-row button').forEach(btn=>{
-  btn.onclick = ()=>{
-    const p = Number(btn.dataset.p);
-    investInput.value = Math.floor(save.money * p);
-  }
-})
-investBtn.onclick = ()=>{
-  const num = Number(investInput.value);
-  if(!num || num <=0 || num > save.money) return;
-  save.money -= num;
-  investBtn.disabled = true;
-  investInput.disabled = true;
-  let t =15;
-  investStatus.innerHTML = `<div class="inv-timer">${t}秒</div><div class="inv-bar"><div style="width:100%"></div></div>`;
-  investTimer = setInterval(()=>{
-    t--;
-    investStatus.querySelector('.inv-timer').innerText = t+'秒';
-    investStatus.querySelector('.inv-bar div').style.width = (t/15*100)+'%';
-    if(t<=0){
-      clearInterval(investTimer);
-      const rate = Math.random() * 2.5 -0.5;
-      const gain = num * rate;
-      save.money += num + gain;
-      const isUp = gain >=0;
-      const item = document.createElement('div');
-      item.className = 'hist-item';
-      item.innerHTML = `<span>${fmt(num)}</span><span class="${isUp?'up':'down'}">${isUp?'+':''}${fmt(gain)}</span>`;
-      investHistory.prepend(item);
-      investStatus.innerText = `${isUp?'盈利':'亏损'} ${fmt(gain)}`;
-      investBtn.disabled = false;
-      investInput.disabled = false;
-      update();
-    }
-  },1000)
-}
-
-//主更新
-function update(){
-  //每秒收入
-  let inc =0;
-  save.ownedShop.forEach((cnt,i)=> inc += cnt * SHOP[i].income);
-  save.income = inc;
-  //等级
-  let levIdx =0;
-  for(let i=0;i<LEVELS.length;i++){
-    if(save.totalEarned >= LEVELS[i].need) levIdx = i;
-  }
-  save.levelIdx = levIdx;
-  const next = LEVELS[Math.min(levIdx+1, LEVELS.length-1)];
-  const currNeed = LEVELS[levIdx].need;
-  const pct = Math.min(100, ((save.totalEarned - currNeed)/(next.need - currNeed))*100 || 0);
-  //页面赋值
-  moneyEl.innerText = fmt(save.money);
-  incomeEl.innerText = fmt(save.income);
-  totalEl.innerText = fmt(save.totalEarned);
-  levelNameEl.innerText = LEVELS[levIdx].name;
-  levelPctEl.innerText = pct.toFixed(1)+'%';
-  levelFillEl.style.width = pct+'%';
-  levelHintEl.innerText = levIdx < LEVELS.length-1 ? '下一等级：'+next.name : '已满级';
-  sCharity.innerText = save.charityPoints;
-  sClicks.innerText = save.clicks;
-  sAssets.innerText = save.ownedShop.reduce((a,b)=>a+b,0);
-  const clickGain = getClickGain();
-  clickValueEl.innerText = '+' + fmt(clickGain.base);
-  //渲染各个板块
-  renderUpgrades();
-  renderShop();
-  renderItems();
-  renderCharity();
+/* =========================================================
+   构建：商店
+   ========================================================= */
+const shopRefs = {};
+function buildShop(){
+  const wrap = $('#shop-list');
+  wrap.innerHTML = '';
+  SHOP.forEach(it => {
+    const el = doc
